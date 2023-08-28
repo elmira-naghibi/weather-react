@@ -10,7 +10,6 @@ import Api from "./Api";
 import Forecast from "./Forecast";
 
 function Weather({ city }) {
-  console.log(city);
   const [weather, setWeather] = useState(null);
 
   const refreshWeatherFromParams = (params) => {
