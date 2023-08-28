@@ -69,7 +69,7 @@ input[type="text"] {
 }
 
 .weather-unit__text--today {
-  color: #333;
+  color: #bdb5b5;
   float: left;
   font-size: 16px;
   line-height: 1.5;
@@ -83,7 +83,7 @@ input[type="text"] {
 }
 
 .weather-temp--today {
-  color: #333;
+  color: #a8a2a2;
   float: left;
   font-size: 64px;
   font-weight: 400;

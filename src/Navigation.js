@@ -2,10 +2,11 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import "./Navigation.css";
+import "./App.css";
 
 export default function Navigation() {
   return (
-    <header>
+    <header className="App-header">
       <ul className="navigation-items">
         <li className="navigation-item">
           <Link to="/">Lisbon</Link>
