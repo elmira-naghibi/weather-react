@@ -31,11 +31,10 @@ function Weather({ city }) {
     refreshWeatherFromParams(`lat=${latitude}&lon=${longitude}`);
   };
 
-  const refresh = (city) => {
-    refreshWeatherFromParams(`q=${city}`);
-  };
-
   useEffect(() => {
+    const refresh = (city) => {
+      refreshWeatherFromParams(`q=${city}`);
+    };
     refresh(city);
   }, [city]);
 
