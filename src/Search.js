@@ -10,6 +10,7 @@ function Search({ refresh }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     refresh(value);
+    setValue("");
   };
 
   return (

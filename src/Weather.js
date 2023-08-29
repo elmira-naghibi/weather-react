@@ -10,7 +10,9 @@ import Api from "./Api";
 import Forecast from "./Forecast";
 
 function Weather({ city }) {
+  console.log(city);
   const [weather, setWeather] = useState(null);
+  const [cityName, setCityName] = useState(city);
 
   const refreshWeatherFromParams = (params) => {
     let url = `${Api.url}/data/2.5/weather?appid=${Api.key}&units=metric&${params}`;
@@ -29,27 +31,30 @@ function Weather({ city }) {
   const refreshWeatherFromLatitudeAndLongitude = (latitude, longitude) => {
     refreshWeatherFromParams(`lat=${latitude}&lon=${longitude}`);
   };
-  const refresh = (city) => {
-    refreshWeatherFromParams(`q=${city}`);
+
+  const refresh = (cityName) => {
+    refreshWeatherFromParams(`q=${cityName}`);
   };
+
   useEffect(() => {
-    const fetcher = (city) => {
-      refreshWeatherFromParams(`q=${city}`);
-    };
-    fetcher(city);
+    refresh(cityName);
+  }, [cityName]);
+
+  useEffect(() => {
+    setCityName(city);
   }, [city]);
 
   return (
     <div>
       <div className="clearfix">
-        <Search refresh={refresh} />
+        <Search refresh={setCityName} />
         <CurrentLocation refresh={refreshWeatherFromLatitudeAndLongitude} />
       </div>
 
       {weather ? (
         <div className="weather-summary">
           <div className="weather-summary-header">
-            <h1>{city}</h1>
+            <h1>{cityName}</h1>
             <div className="weather-detail__text">{weather.time}</div>
             <div className="weather-detail__text">{weather.description}</div>
           </div>
@@ -82,7 +87,7 @@ function Weather({ city }) {
         </div>
       )}
 
-      {weather && <Forecast city={city} />}
+      {weather && <Forecast city={cityName} />}
     </div>
   );
 }
